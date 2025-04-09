@@ -1,0 +1,37 @@
+# PostgreSQL target configuration
+
+postgres:
+  # Connection parameters
+  host: "localhost"
+  port: 5432
+  database: "nlp_pipeline"
+  username: "postgres"
+  password: "postgres"
+  
+  # Table parameters
+  table_name: "document_embeddings"
+  
+  # Write mode (append, overwrite, ignore, error)
+  mode: "append"
+  
+  # Batch size for writing
+  batch_size: 1000
+  
+  # Vector column configuration
+  vector_column: "embeddings"
+  
+  # Schema mapping (optional)
+  schema_mapping:
+    id: "id"
+    chunk_id: "chunk_id"
+    chunk_text: "content"
+    embeddings: "embedding"
+  
+  # Index configuration (optional)
+  create_indexes: true
+  indexes:
+    - name: "embedding_idx"
+      columns: ["embedding"]
+      using: "ivfflat"
+      with:
+        lists: 100

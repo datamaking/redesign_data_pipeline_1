@@ -1,0 +1,29 @@
+# Text file source configuration
+
+text:
+  # File path pattern (supports glob patterns)
+  path: "data/input/*.txt"
+  
+  # Whether to recursively search for files
+  recursive: true
+  
+  # File format options
+  format: "text"
+  
+  # Character encoding
+  encoding: "utf-8"
+  
+  # Whether to include file path as a column
+  include_path: true
+  
+  # Whether to include file name as a column
+  include_filename: true
+  
+  # Whether to include file modification time as a column
+  include_modification_time: true
+  
+  # Maximum file size to process (in bytes, 0 for no limit)
+  max_file_size: 0
+  
+  # Batch size for reading files
+  batch_size: 1000

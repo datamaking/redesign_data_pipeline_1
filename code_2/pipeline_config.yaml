@@ -1,0 +1,72 @@
+# PySpark NLP Pipeline Configuration
+
+# Logging configuration
+logging:
+  log_level: INFO
+  log_file: logs/pipeline.log
+  max_log_size: 10485760  # 10 MB
+  backup_count: 5
+  log_format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+# Spark configuration
+spark:
+  app_name: "PySpark NLP Pipeline"
+  conf:
+    spark.executor.memory: "4g"
+    spark.driver.memory: "2g"
+    spark.executor.cores: "2"
+    spark.sql.shuffle.partitions: "200"
+    spark.default.parallelism: "100"
+    spark.serializer: "org.apache.spark.serializer.KryoSerializer"
+
+# Pipeline configuration
+pipeline:
+  # Data source configuration
+  source:
+    type: "text"
+    params:
+      path: "data/input/*.txt"
+      recursive: true
+  
+  # Preprocessing configuration
+  preprocessing:
+    text_column: "text"
+    output_column: "text_processed"
+    lowercase: true
+    remove_html: true
+    remove_special_chars: true
+    remove_numbers: false
+    remove_stopwords: true
+    language: "english"
+    use_spacy: false
+  
+  # Chunking configuration
+  chunking:
+    type: "fixed_size"
+    text_column: "text_processed"
+    chunk_size: 500
+    chunk_overlap: 50
+  
+  # Embedding configuration
+  embedding:
+    type: "huggingface"
+    text_column: "chunk_text"
+    output_column: "embeddings"
+    model_name: "all-MiniLM-L6-v2"
+  
+  # Data target configuration
+  target:
+    type: "postgres"
+    params:
+      table_name: "document_embeddings"
+      mode: "append"
+      vector_column: "embeddings"
+  
+  # Vector search configuration (optional)
+  search:
+    type: "postgres"
+    table_name: "document_embeddings"
+    vector_column: "embeddings"
+    id_column: "id"
+    content_column: "chunk_text"
+    metadata_columns: ["chunk_id"]

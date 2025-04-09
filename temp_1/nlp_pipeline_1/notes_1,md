@@ -1,0 +1,100 @@
+redesign_data_pipeline_1
+
+
+please generate the complete code for pyspark nlp data pipeline with following modules, 
+1. configuration module: one common python configuration file and multiple python configuration files for individual or each data source and data target, 
+2. data source module: read the data from multiple data sources like 1. hive table, 2. text file source, 3. html file source and html parsing, 4. rdbms table source, 5. mongodb collection source, 6. chromdb source, 7. postgresql vector database, 8. neo4j vector database,
+3. preprocessing module,
+4. chunking module: multiple chunking strategy with chunk smoothing process,
+5. vector embedding creation or generation module,
+6. structred or relational data and vector embedding write module: write the data to multiple data sources like 1. hive table, 2. text file, 3. html file, 4. rdbms table, 5. mongodb collection target, 6. chromdb target, 7. postgresql vector database, 8. neo4j vector database, 9. json file, 10. csv file,
+7. vector search module,
+8. best practice for loggging module,
+9. best practice for exception handling module,
+10. use appropriate design pattern for all the above modules,
+11. use coding best practice for all the above modules,
+12. create a project structure for all the above modules,
+13. craete a requirements.txt with required python packages
+14. create a README.md file with instructions on how to integrate all these files
+
+please generate the complete code for all the files:
+pyspark-nlp-pipeline/
+├── config/
+│   ├── __init__.py
+│   ├── base_config.py
+│   ├── source_configs/
+│   │   ├── __init__.py
+│   │   ├── hive_config.py
+│   │   ├── text_config.py
+│   │   ├── html_config.py
+│   │   ├── rdbms_config.py
+│   │   ├── mongodb_config.py
+│   │   ├── chromadb_config.py
+│   │   ├── postgres_config.py
+│   │   └── neo4j_config.py
+│   └── target_configs/
+│       ├── __init__.py
+│       ├── hive_config.py
+│       ├── file_config.py
+│       ├── rdbms_config.py
+│       ├── mongodb_config.py
+│       ├── chromadb_config.py
+│       ├── postgres_config.py
+│       └── neo4j_config.py
+├── src/
+│   ├── __init__.py
+│   ├── data_source/
+│   │   ├── __init__.py
+│   │   ├── base_source.py
+│   │   ├── hive_source.py
+│   │   ├── text_source.py
+│   │   ├── html_source.py
+│   │   ├── rdbms_source.py
+│   │   ├── mongodb_source.py
+│   │   ├── chromadb_source.py
+│   │   ├── postgres_source.py
+│   │   └── neo4j_source.py
+│   ├── preprocessing/
+│   │   ├── __init__.py
+│   │   ├── preprocessor.py
+│   │   ├── text_cleaner.py
+│   │   ├── tokenizer.py
+│   │   └── normalizer.py
+│   ├── chunking/
+│   │   ├── __init__.py
+│   │   ├── base_chunker.py
+│   │   ├── fixed_size_chunker.py
+│   │   ├── sentence_chunker.py
+│   │   ├── paragraph_chunker.py
+│   │   └── semantic_chunker.py
+│   ├── embedding/
+│   │   ├── __init__.py
+│   │   ├── base_embedder.py
+│   │   ├── spark_embedder.py
+│   │   └── huggingface_embedder.py
+│   ├── data_target/
+│   │   ├── __init__.py
+│   │   ├── base_target.py
+│   │   ├── hive_target.py
+│   │   ├── file_target.py
+│   │   ├── rdbms_target.py
+│   │   ├── mongodb_target.py
+│   │   ├── chromadb_target.py
+│   │   ├── postgres_target.py
+│   │   └── neo4j_target.py
+│   ├── vector_search/
+│   │   ├── __init__.py
+│   │   ├── base_search.py
+│   │   ├── chromadb_search.py
+│   │   ├── postgres_search.py
+│   │   └── neo4j_search.py
+│   └── utils/
+│       ├── __init__.py
+│       ├── logging_utils.py
+│       └── exception_utils.py
+├── main.py
+├── requirements.txt
+└── README.md
+
+
+please generate the complete code pyspark data pipeline to read the data from multiple data sources like 1. hive table, 2. text file source, 3. html file source and html parsing, 4. rdbms table source, 5. mongodb collection source, 6. chromdb source, 7. postgresql vector database, 8. neo4j vector database
